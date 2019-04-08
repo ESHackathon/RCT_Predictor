@@ -1,1 +1,1 @@
-robotsearch==0.1.3
+https://github.com/ijmarshall/robotsearch/archive/master.zip
