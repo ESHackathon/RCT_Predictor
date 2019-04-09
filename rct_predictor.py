@@ -9,6 +9,9 @@ rct_clf = rct_robot.RCTRobot()
 def main():
     for index, line in enumerate(open(sys.argv[1], mode='rt', encoding='utf-8')):
         splitted_line = line.rstrip("\r\n").split('\t')
+        # skip blank lines
+        if len(splitted_line) < 2:
+            continue
         if index == 0:
             splitted_line.append("is_rct")
             print(("\t".join(splitted_line)))
