@@ -1,0 +1,30 @@
+{
+  "name": "jivasquez/rct_predictor",
+  "version": "0.0.0",
+  "description": "I3 adapter for ijmarshall/robotsearch to predict whether a citation is an RCT",
+  "license": "MIT",
+  "inputs": [
+    {
+      "type": "citations",
+      "format": "tsv",
+      "filename": "input.tsv"
+    }
+  ],
+  "worker": {
+    "type": "docker",
+    "container": "crebp/combine",
+    "mount": "/app/work",
+    "command": [
+      "input.tsv",
+      ">output.tsv"
+    ]
+  },
+  "outputs": [
+    {
+      "type": "citations",
+      "format": "tsv",
+      "filename": "output.tsv"
+    }
+  ]
+}
+}
