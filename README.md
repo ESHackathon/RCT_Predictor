@@ -5,7 +5,7 @@ RCT Predictor is a Python library that uses RobotSearch to predict if a study is
 ## Usage
 
 ```
-python rct_predictor.py test.tsv > predictions.tsv
+python rct_predictor.py test.tsv output.tsv
 ```
 
 
