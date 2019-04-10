@@ -1,33 +1,27 @@
 import sys
 
 from robotsearch.robots import rct_robot
-import csv
+import json
 
 
 rct_clf = rct_robot.RCTRobot()
 
 
-def main():
-    result = []
-    with open(sys.argv[1],'r') as tsvfile:
-        reader = csv.reader(tsvfile, delimiter='\t')
-        header = next(reader)
-        header.append('is_rct')
-        result.append(header)
-        for line in reader:
-            if len(line) < 3:
-                continue
-            title = line[1]
-            abstract = line[2]
-            pred = rct_clf.predict({"title": title, "abstract": abstract, "use_ptyp": False}, filter_type="balanced", filter_class="svm_cnn")
-            line.append(str(pred[0]["is_rct"]))
-            line = [x.replace('\n',' ') for x in line]
-            result.append(line)
-    with open(sys.argv[2],'w+') as outfile:
-        writer = csv.writer(outfile, delimiter='\t')
-        for r in result:
-            writer.writerow(r)
+def predict(infile, outfile):
+    with open(infile,'r') as jsonfile:
+        in_data = json.loads(jsonfile.read())
+    for j in in_data:
+        if 'title' not in j or 'abstract' not in j:
+            j['is_rct'] = 'missing title and/or abstract'
+            continue
+        pred = rct_clf.predict({"title": j['title'], "abstract": j['abstract'], "use_ptyp": False}, filter_type="balanced", filter_class="svm_cnn")
+        j['is_rct'] = str(pred[0]["is_rct"])
+    with open(outfile,'w+') as out:
+        out.write(json.dumps(in_data))
+
 
 
 if __name__ == "__main__":
-    main()
+    infile = sys.argv[1]
+    outfile = sys.argv[2]
+    predict(infile,outfile)
