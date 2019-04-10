@@ -7,10 +7,10 @@ build:
 test:
 	-rm -rf /tmp/i3-rct_predictor
 	mkdir /tmp/i3-rct_predictor
-	cp test.tsv /tmp/i3-rct_predictor/test.tsv
-	docker run -e LANG=C.UTF-8 --volume /tmp/i3-rct_predictor:/app/work eshackathon/rct_predictor work/test.tsv  work/output.tsv
+	cp test.json /tmp/i3-rct_predictor/test.json
+	docker run -e LANG=C.UTF-8 --volume /tmp/i3-rct_predictor:/app/work eshackathon/rct_predictor work/test.json  work/output.json
 	@echo --- START OUTPUT ---
-	@cat /tmp/i3-rct_predictor/output.tsv
+	@cat /tmp/i3-rct_predictor/output.json
 	@echo --- END OUTPUT ---
 	-rm -rf /tmp/i3-rct_predictor
 
