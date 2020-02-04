@@ -5,7 +5,7 @@
   "license": "MIT",
   "inputs": [
     {
-      "type": "citations",
+      "type": "references",
       "format": "tsv",
       "filename": "input.tsv"
     }
@@ -21,7 +21,7 @@
   },
   "outputs": [
     {
-      "type": "citations",
+      "type": "references",
       "format": "tsv",
       "filename": "output.tsv"
     }
