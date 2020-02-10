@@ -1,29 +1,27 @@
 {
-  "name": "jivasquez/rct_predictor",
+  "name": "eshackathon/rct_predictor",
   "version": "0.0.0",
   "description": "I3 adapter for ijmarshall/robotsearch to predict whether a citation is an RCT",
   "license": "MIT",
   "inputs": [
     {
       "type": "references",
-      "format": "tsv",
-      "filename": "input.tsv"
+      "format": "json",
+      "filename": "input.json"
     }
   ],
   "worker": {
     "type": "docker",
-    "container": "crebp/combine",
-    "mount": "/app/work",
     "command": [
-      "input.tsv",
-      ">output.tsv"
+      "/data/input.json",
+      "/data/output.json"
     ]
   },
   "outputs": [
     {
       "type": "references",
-      "format": "tsv",
-      "filename": "output.tsv"
+      "format": "json",
+      "filename": "output.json"
     }
   ]
 }
